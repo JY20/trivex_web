@@ -88,7 +88,7 @@ const Navbar = () => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar position="static" color="white" sx={{ boxShadow: 0, padding: '10px 0' }}>
+            <AppBar position="sticky" color="white" sx={{ boxShadow: 0, padding: '10px 0' }}>
                 <Toolbar sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center' }}>
                     <Box
                         sx={{
@@ -112,7 +112,7 @@ const Navbar = () => {
                         <Typography
                             variant="h6"
                             component={Link}
-                            to="/"
+                            to="/trade"
                             sx={{
                                 textDecoration: 'none',
                                 color: '#7E57C2',
@@ -138,22 +138,6 @@ const Navbar = () => {
                         <Typography
                             variant="h7"
                             component={Link}
-                            to="/trade"
-                            sx={{
-                                textDecoration: 'none',
-                                color: '#7E57C2',
-                                fontWeight: 'bold',
-                                transition: 'transform 0.3s ease',
-                                display: 'flex',
-                                alignItems: 'center',
-                                '&:hover': { color: '#6A4BA1' },
-                            }}
-                        >
-                            Trade
-                        </Typography>
-                        <Typography
-                            variant="h7"
-                            component={Link}
                             to="/algo"
                             sx={{
                                 textDecoration: 'none',
@@ -165,7 +149,7 @@ const Navbar = () => {
                                 '&:hover': { color: '#6A4BA1' },
                             }}
                         >
-                            Algo
+                            Strategy
                         </Typography>
                     </Box>
 

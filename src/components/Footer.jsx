@@ -61,6 +61,7 @@ const Footer = () => {
           </div>
 
         </Stack>
+        &copy; 2025 Trivex
       </StackColumn>
     </BoxRow>
   );
