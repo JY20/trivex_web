@@ -14,8 +14,7 @@ const SettingsPage = () => {
     const [portfolio, setPortfolio] = useState([]); 
     const [transaction, setTransaction] = useState([]); 
     const [balance, setBalance] = useState(0);
-    const host = "localhost:8080";
-
+    const host = "https://9aef-2001-1970-51a3-8f00-00-8e0.ngrok-free.app";
     const hash_provider = new Provider({ network: "sepolia" });
     const classHash = "0x008e2b7d5289f1ca14683bc643f42687dd1ef949e8a35be4c429aa825a097604"; 
     const contractAddress = "0x005262cd7aee4715e4a00c41384a5f5ad151ff16da7523f41b93836bed922ced"; 
@@ -32,7 +31,9 @@ const SettingsPage = () => {
 
     const fetchBalance = async (address) => {
         try {
-            const response = await axios.get(`http://${host}/wallets/${address}/balances`);
+            const response = await axios.get(`${host}/wallets/${address}/balances`, {
+                headers: { "ngrok-skip-browser-warning": "true" }
+                })
             const current_balances = response.data; 
             if (current_balances && current_balances.length > 0) {
                 const accountValue = parseFloat(current_balances[0].amount || 0);
@@ -47,7 +48,9 @@ const SettingsPage = () => {
     
     const fetchPortfolio = async (address) => {
         try {
-            const response = await axios.get(`http://${host}/wallets/${address}/portfolio`);
+            const response = await axios.get(`${host}/wallets/${address}/portfolio`, {
+                headers: { "ngrok-skip-browser-warning": "true" }
+                })
             const portfolioData = response.data && response.data.length > 0 
             ? response.data.map(item => ({
                 portfolio_id: item.portfolio_id,
@@ -66,7 +69,9 @@ const SettingsPage = () => {
     
     const fetchTransactions = async (address) => {
         try {
-            const response = await axios.get(`http://${host}/wallets/${address}/transactions`);
+            const response = await axios.get(`${host}/wallets/${address}/transactions`, {
+                headers: { "ngrok-skip-browser-warning": "true" }
+                })
             const transactionData = response.data && response.data.length > 0 
                 ? response.data.map(item => ({
                     transaction_id: parseInt(item.transaction_id),
@@ -124,9 +129,11 @@ const SettingsPage = () => {
 
     const updateBalance = async (hash) => {
         try {
-            const response = await axios.post(`http://${host}/action`, {
+            const response = await axios.post(`${host}/action`, {
                 hash
-            });
+            }, {
+                headers: { "ngrok-skip-browser-warning": "true" }
+                });
     
             console.log("Balance updated:", response.data);
         } catch (error) {

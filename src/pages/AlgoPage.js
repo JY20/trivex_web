@@ -23,7 +23,7 @@ const AlgoPage = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const host = "localhost:8082";
+  const host = "https://1e1e-2001-1970-51a3-8f00-00-8b27.ngrok-free.app";
 
   const hash_provider = new Provider({ network: "sepolia" });
   const classHash = "0x008e2b7d5289f1ca14683bc643f42687dd1ef949e8a35be4c429aa825a097604"; 
@@ -128,12 +128,14 @@ const AlgoPage = () => {
   const standardDeviation = async (symbol, openSd, closeSd, isBuy) => {
 
     try {
-      const res = await axios.post(`http://${host}/standardDeviation`, {
+      const res = await axios.post(`${host}/standardDeviation`, {
         symbol,
         openSd,
         closeSd,
         is_buy: isBuy,
-      });
+      }, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
       
       const data = res.data;
       setResults(data);    
@@ -146,12 +148,14 @@ const AlgoPage = () => {
   const coVariance= async (symbol1, symbol2, startDate, endDate) => {
 
     try {
-      const res = await axios.post(`http://${host}/coVariance`, {
+      const res = await axios.post(`${host}/coVariance`, {
         symbol1,
         symbol2,
         start_date: new Date(startDate),
         end_date: new Date(endDate),
-      });
+      }, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
       
       const data = res.data;
       setResults(data);    
@@ -164,10 +168,12 @@ const AlgoPage = () => {
   const averageRebalance = async (list, email) => {
 
     try {
-      const res = await axios.post(`http://${host}/averageRebalance`, {
+      const res = await axios.post(`${host}/averageRebalance`, {
         list, 
         email
-      });
+      }, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
       
       const data = res.data; 
       return data;
@@ -179,10 +185,12 @@ const AlgoPage = () => {
   const momentum = async (list, email) => {
 
     try {
-      const res = await axios.post(`http://${host}/momentum`, {
+      const res = await axios.post(`${host}/momentum`, {
         list, 
         email
-      });
+      }, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
       
       const data = res.data; 
       return data;

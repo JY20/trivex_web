@@ -9,7 +9,7 @@ const MainPage = () => {
         wallet: '',
         message: '',
     });
-    const host = "localhost:8080";
+    const host = "https://9aef-2001-1970-51a3-8f00-00-8e0.ngrok-free.app";
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -22,7 +22,9 @@ const MainPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://${host}/add_request`, formData);
+            const response = await axios.post(`${host}/add_request`, formData, {
+                headers: { "ngrok-skip-browser-warning": "true" }
+                });
 
             const result = response.data.status;
     

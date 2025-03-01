@@ -19,14 +19,16 @@ const TradePage = () => {
   const [price, setPrice] = useState(0); 
   const [tradingSymbol, setTradingSymbol] = useState('');
 
-  const host = "localhost:8080";
+  const host = "https://9aef-2001-1970-51a3-8f00-00-8e0.ngrok-free.app";
   const info = useContext(AppContext);
 
 
   const handleSymbols = async (selectedSector) => {
     try {
       console.log(`Fetching symbols for sector: ${selectedSector}...`);
-      const response = await axios.get(`http://${host}/symbols/${selectedSector}`);
+      const response = await axios.get(`${host}/symbols/${selectedSector}`, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
 
       const symbols = Object.keys(response.data); 
       const symbolLeverages = response.data; 
@@ -47,7 +49,9 @@ const TradePage = () => {
   const handleBalance = async (address) => {
     try {
       console.log("Fetching balance...");
-      const response = await axios.get(`http://${host}/wallets/${address}/balances`);
+      const response = await axios.get(`${host}/wallets/${address}/balances`, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
 
       const balances = response.data; 
       if (balances && balances.length > 0) {
@@ -64,7 +68,9 @@ const TradePage = () => {
   const handlePositions = async (address) => {
     try {
       console.log("Fetching portfolio...");
-      const response = await axios.get(`http://${host}/wallets/${address}/portfolio`);
+      const response = await axios.get(`${host}/wallets/${address}/portfolio`, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
       console.log(response.data);
       const current_positions = response.data && response.data.length > 0 
       ? response.data.map(item => ({
@@ -95,7 +101,9 @@ const TradePage = () => {
   const handlePrice = async (symbol) => {
     try {
       console.log(`Fetching ${symbol}`);
-      const response = await axios.get(`http://${host}/price/${symbol}`);
+      const response = await axios.get(`${host}/price/${symbol}`, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
 
       const current_price = parseFloat(response.data.price);
       setPrice(current_price);
@@ -148,7 +156,9 @@ const TradePage = () => {
 
       console.log(data);
     
-      const res = await axios.post(`http://${host}/open`, data);
+      const res = await axios.post(`${host}/open`, data, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
     
       const result = res.data.status;
     
@@ -171,13 +181,15 @@ const TradePage = () => {
       console.log(position);
       alert(`Closing position for ${position.symbol}`);
   
-      const res = await axios.post(`http://${host}/close`, {
+      const res = await axios.post(`${host}/close`, {
         portfolio_id: position.portfolio_id,
         wallet: position.address,
         symbol: position.symbol,
         size: position.quantity,
         sector: position.sector
-      });
+      }, {
+        headers: { "ngrok-skip-browser-warning": "true" }
+        });
   
       if (res.data.status === "Success") {
         handleBalance(sector);

@@ -68,11 +68,13 @@ const Navbar = () => {
     const [walletName, setWalletName] = useState("");
     const [wallet, setWallet] = useState("");
 
-    const host = "localhost:8080";
+    const host = "https://9aef-2001-1970-51a3-8f00-00-8e0.ngrok-free.app";
 
     const checkWhitelisted = async (address) => {
         try {
-          const response = await axios.get(`http://${host}/wallets/${address}/whitelist`);
+          const response = await axios.get(`${host}/wallets/${address}/whitelist`, {
+            headers: { "ngrok-skip-browser-warning": "true" }
+            });
     
           const result = response.data;
           info.setWhitelisted(result);
