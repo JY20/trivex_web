@@ -19,7 +19,7 @@ const TradePage = () => {
   const [price, setPrice] = useState(0); 
   const [tradingSymbol, setTradingSymbol] = useState('');
 
-  const host = "https://9aef-2001-1970-51a3-8f00-00-8e0.ngrok-free.app";
+  const host = "https://2660-2001-1970-51a3-8f00-00-c11.ngrok-free.app";
   const info = useContext(AppContext);
 
 

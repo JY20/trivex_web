@@ -14,7 +14,7 @@ const SettingsPage = () => {
     const [portfolio, setPortfolio] = useState([]); 
     const [transaction, setTransaction] = useState([]); 
     const [balance, setBalance] = useState(0);
-    const host = "https://9aef-2001-1970-51a3-8f00-00-8e0.ngrok-free.app";
+    const host = "https://2660-2001-1970-51a3-8f00-00-c11.ngrok-free.app";
     const hash_provider = new Provider({ network: "sepolia" });
     const classHash = "0x008e2b7d5289f1ca14683bc643f42687dd1ef949e8a35be4c429aa825a097604"; 
     const contractAddress = "0x005262cd7aee4715e4a00c41384a5f5ad151ff16da7523f41b93836bed922ced"; 
